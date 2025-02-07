@@ -11,6 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #ffffff;
         }
         #calendar-container {
             max-width: 600px;
@@ -23,13 +24,33 @@
         .time-slot {
             padding: 10px;
             margin: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #4CAF50;
+            background-color: #e8f5e9;
             display: inline-block;
             cursor: pointer;
+            border-radius: 5px;
         }
         .selected {
             background-color: #4CAF50;
             color: white;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -48,9 +69,10 @@
     <div id="appointment-form">
         <h3>Enter Your Details</h3>
         <form id="booking-form">
-            <input type="text" id="name" placeholder="Your Name" required><br><br>
-            <input type="email" id="email" placeholder="Your Email" required><br><br>
-            <button type="submit">Schedule Appointment</button>
+            <input type="text" id="name" placeholder="Your Name" required><br>
+            <input type="email" id="email" placeholder="Your Email" required><br>
+            <input type="tel" id="phone" placeholder="Your Phone Number" required><br>
+            <button type="submit">Confirm Appointment</button>
         </form>
     </div>
 
@@ -74,7 +96,11 @@
             function generateTimeSlots() {
                 let timeSlotsContainer = document.getElementById('slots');
                 timeSlotsContainer.innerHTML = '';
-                let times = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'];
+                let times = [];
+                for (let hour = 9; hour <= 17; hour++) {
+                    times.push(`${hour}:00`);
+                    times.push(`${hour}:30`);
+                }
                 times.forEach(time => {
                     let slot = document.createElement('div');
                     slot.className = 'time-slot';
@@ -101,7 +127,10 @@
                 event.preventDefault();
                 let name = document.getElementById('name').value;
                 let email = document.getElementById('email').value;
-                alert(`Appointment Scheduled on ${selectedDate} at ${selectedTime} for ${name} (${email})`);
+                let phone = document.getElementById('phone').value;
+
+                // Redirect to confirmation page
+                window.location.href = `confirmation.html?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
             });
         });
     </script>
