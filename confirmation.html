@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0fdf4;
+        }
+        .confirmation-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <h2>Appointment Confirmed</h2>
+        <p>Your appointment has been scheduled successfully!</p>
+        <p><strong>Date:</strong> <span id="appointment-date"></span></p>
+        <p><strong>Time:</strong> <span id="appointment-time"></span></p>
+        <p><strong>Name:</strong> <span id="appointment-name"></span></p>
+        <p><strong>Email:</strong> <span id="appointment-email"></span></p>
+        <p><strong>Phone:</strong> <span id="appointment-phone"></span></p>
+        <button onclick="window.location.href='index.html'">Go Back to Scheduler</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get parameters from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const date = urlParams.get('date');
+            const time = urlParams.get('time');
+            const name = urlParams.get('name');
+            const email = urlParams.get('email');
+            const phone = urlParams.get('phone');
+
+            // Display the appointment details
+            document.getElementById('appointment-date').textContent = date;
+            document.getElementById('appointment-time').textContent = time;
+            document.getElementById('appointment-name').textContent = name;
+            document.getElementById('appointment-email').textContent = email;
+            document.getElementById('appointment-phone').textContent = phone;
+        });
+    </script>
+</body>
+</html>
