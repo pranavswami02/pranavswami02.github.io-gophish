@@ -111,8 +111,8 @@
                 timeSlotsContainer.innerHTML = '';
                 let times = [];
                 for (let hour = 9; hour <= 17; hour++) {
-                    times.push(`${hour}:00 AM`);
-                    times.push(`${hour}:30 AM`);
+                    times.push(`${hour}:00`);
+                    times.push(`${hour}:30`);
                 }
                 times.forEach(time => {
                     let slot = document.createElement('div');
